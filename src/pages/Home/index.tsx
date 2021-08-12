@@ -1,6 +1,8 @@
 import React, {useState, FormEvent} from 'react';
+import { api } from '../../services/api';
 import asideImg from '../../assets/aside.svg';
 import '../../styles/home.scss'
+import { useHistory } from 'react-router';
 
 
 interface UserCredentials {
@@ -13,6 +15,7 @@ export default function Home(){
         username: '',
         password: ''
     });
+    const history = useHistory();
 
     async function handleSignIn(event: FormEvent) {
         event.preventDefault();
@@ -20,12 +23,21 @@ export default function Home(){
         if(credentials?.username?.trim() === '' ||credentials?.username?.trim() === undefined || credentials?.password?.trim() === '') {
             return;
         }
-        console.log(credentials.username)
-        console.log(credentials.password)
+        
+        const result = await api.post('/users/validate', {
+            username: credentials.username,
+            password: credentials.password
+        });
 
+        const { data } = result;
 
-        // Validar no banco de dados!
-        alert('Redirecionando....')
+        if(data === "") {
+            return;
+        }
+
+        alert('Seja bem vindo de volta, ' + credentials.username);
+
+        history.push('/app');
     }
 
     function handleFillCredentialsFields(event: any) {
@@ -61,7 +73,7 @@ export default function Home(){
                     onChange={handleFillCredentialsFields}
                     value={credentials?.password}
                     />
-                    <button>Entrar</button>
+                    <button>Play!</button>
                 </form>
             </div>
         </main>
