@@ -69,35 +69,57 @@
            
             .result-card {
                 display: flex;
-                flex-direction: row;
-                align-items: flex-end;
-                padding: 8px;
+                flex-direction: column;
+                padding: 8px 24px;
+                background: #29292e;
                 box-shadow: 0 4px 14px 0 rgb(229 59 53 / 39%);
-                border-radius: 8px;
-                background: #f8f8f8;
-                cursor: pointer;
-
-                img {
-                    padding: 8px;
-                    border-radius: 16px;
+            
+                header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #29292e;
+                    color: #fff;
+                    font-size: 24px;
+                }
+                .card-content {
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 4px;
+                    padding: 0 16px;
                 }
 
-                div {
+                img {
+                    text-align: center;
+                    border: 8px solid #f8f8f8;
+
+                }
+
+                footer {
+                    display: flex;
+                    background: #29292e;
+                    justify-content: center;
                     padding: 8px;
-                  
+
+                    gap: 16px;
+
                     button {
-                        padding: 8px 16px;
                         border: 0;
-                        cursor: pointer;
+                        padding: 16px 24px;
                         background: #E53935;
-                        color: #fff;
-                        border-radius: 8px;
+                        border-radius: 4px;
                         box-shadow: 0 4px 14px 0 rgb(229 59 53 / 39%);
-                        margin: 0 4px;
-                        transition: 0.5s;
+                        cursor: pointer;
+                        transition: 0.8s;
+                        svg {
+                            color: #fff;
+                        }
 
                         &:hover {
-                            background: #EF9A9A;
+                            svg {
+                                color: #E53935;
+                            }
+                            background: #fff;
                         }
                     }
                 }
